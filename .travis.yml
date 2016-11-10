@@ -1,0 +1,21 @@
+language: python
+
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+
+install:
+  - python setup.py install
+  - pip install coveralls
+
+script:
+  - python manage.py test
+
+after_success:
+  coveralls
+
+deploy:
+  provider: pypi
+  user: "nikhila05"
+  password: "Asv2come"

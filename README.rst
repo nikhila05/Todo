@@ -1,8 +1,11 @@
-Django-Simple-Pagination
-=========================
+.. image:: https://badge.fury.io/py/test-todo.svg
+    :target: https://badge.fury.io/py/test-todo
 
-.. image:: https://travis-ci.org/MicroPyramid/django-simple-pagination.svg?branch=master
-   :target: https://travis-ci.org/MicroPyramid/django-simple-pagination
+.. image:: https://coveralls.io/repos/github/nikhila05/Todo/badge.svg
+  :target: https://coveralls.io/github/nikhila05/Todo
+
+.. image:: https://travis-ci.org/nikhila05/Todo.svg?branch=master
+    :target: https://travis-ci.org/nikhila05/Todo
 
 .. image:: https://img.shields.io/pypi/dm/django-simple-pagination.svg
     :target: https://pypi.python.org/pypi/django-simple-pagination
@@ -11,9 +14,6 @@ Django-Simple-Pagination
 .. image:: https://img.shields.io/pypi/v/django-simple-pagination.svg
     :target: https://pypi.python.org/pypi/django-simple-pagination
     :alt: Latest Release
-    
-.. image:: https://coveralls.io/repos/github/MicroPyramid/django-simple-pagination/badge.svg?branch=master
-   :target: https://coveralls.io/github/MicroPyramid/django-simple-pagination?branch=master
 
 .. image:: https://landscape.io/github/MicroPyramid/django-simple-pagination/master/landscape.svg?style=flat
    :target: https://landscape.io/github/MicroPyramid/django-simple-pagination/master
@@ -22,28 +22,84 @@ Django-Simple-Pagination
 .. image:: https://img.shields.io/github/license/micropyramid/django-simple-pagination.svg
     :target: https://pypi.python.org/pypi/django-simple-pagination/
 
-Django-Simple-Pagination is a simple Django app to for digg-style pagination with little effort.
 
-**Documentation** is `avaliable online
-<http://django-simple-pagination.readthedocs.org/>`_, or in the docs
-directory of the project.
+Django-Simple-Pagination
+========================
 
-Quick start
------------
+Documentation_ -- GitHub_ -- Travis-CI_
 
-1. Install 'Django-Simple-Pagination' using the following command::
+Django-Simple-Pagination is a simple Django app to for digg-style pagination with little effort. `Django Simple Pagination`_.
 
-    pip install django-simple-pagination
+Features:
 
-2. Add ``simple_pagination`` to your INSTALLED_APPS setting like this::
+- Dynamic blog articles
+- Blog pages
+- Contact us page (configurable)
+- google analytics
+- SEO compliant
+
+Installation
+--------------
+
+- Install django-blog-it using the following command
+
+.. code-block:: python
+
+    pip install django-blog-it
+
+    # or
+    git clone git://github.com/micropyramid/django-blog-it.git
+
+    cd django-blog-it
+
+    python setup.py install
+
+- Add app name in settings.py
+
+.. code-block:: python
 
     INSTALLED_APPS = [
-        ...
-        'simple_pagination',
+       '..................',
+       'simple_pagination',
+       'django_blog_it.django_blog_it',
+       '..................'
     ]
-2. In templates use ``{% paginate entities %}`` to get pagination objects.
-3. In templates use ``{% show_pageitems %}`` to get digg-style page links.
 
-We welcome your feedback and support, raise github ticket if you want to report a bug. Need new features? `Contact us here`_
+- After installing/cloning this, add the following settings in the virtual env/bin/activate file to start discussions on blog articles
 
-.. _contact us here: https://micropyramid.com/contact-us/
+.. code-block:: python
+
+  You can create your disqus account at https://disqus.com/profile/login/
+
+    # Disquss details
+
+    DISQUSSHORTNAME="Your Disquss Short Name"
+
+    export DISQUSSHORTNAME
+
+
+- Use virtualenv to install requirements
+
+::
+
+    pip install -r requirements.txt
+
+You can try it by hosting on your own or deploy to Heroku with a button click.
+
+Deploy To Heroku:
+
+.. image:: https://www.herokucdn.com/deploy/button.svg
+   :target: https://heroku.com/deploy?template=https://github.com/MicroPyramid/django-blog-it
+
+
+Support
+-------
+
+We welcome your feedback and support, raise github ticket if you want to report a bug. Need new features?  contactus_
+
+
+.. _contactus: https://micropyramid.com/contact-india/
+.. _GitHub: https://github.com/nikhila05/Todo
+.. _Travis-CI: https://travis-ci.org/nikhila05/Todo
+.. _Django Simple Pagination: https://micropyramid.com/oss/
+.. _Documentation: http://django-blog-it.readthedocs.io/en/latest/?badge=latest

@@ -1,105 +1,127 @@
-.. image:: https://badge.fury.io/py/test-todo.svg
-    :target: https://badge.fury.io/py/test-todo
+forex-python
+============
 
-.. image:: https://coveralls.io/repos/github/nikhila05/Todo/badge.svg
-  :target: https://coveralls.io/github/nikhila05/Todo
+.. image:: https://travis-ci.org/MicroPyramid/forex-python.svg?branch=master
+   :target: https://travis-ci.org/MicroPyramid/forex-python
 
-.. image:: https://travis-ci.org/nikhila05/Todo.svg?branch=master
-    :target: https://travis-ci.org/nikhila05/Todo
+.. image:: https://coveralls.io/repos/github/MicroPyramid/forex-python/badge.svg?branch=master
+   :target: https://coveralls.io/github/MicroPyramid/forex-python?branch=master
 
-.. image:: https://img.shields.io/pypi/dm/django-simple-pagination.svg
-    :target: https://pypi.python.org/pypi/django-simple-pagination
-    :alt: Downloads
-
-.. image:: https://img.shields.io/pypi/v/django-simple-pagination.svg
-    :target: https://pypi.python.org/pypi/django-simple-pagination
-    :alt: Latest Release
-
-.. image:: https://landscape.io/github/MicroPyramid/django-simple-pagination/master/landscape.svg?style=flat
-   :target: https://landscape.io/github/MicroPyramid/django-simple-pagination/master
+.. image:: https://landscape.io/github/MicroPyramid/forex-python/master/landscape.svg?style=plastic
+   :target: https://landscape.io/github/MicroPyramid/forex-python/master
    :alt: Code Health
 
-.. image:: https://img.shields.io/github/license/micropyramid/django-simple-pagination.svg
-    :target: https://pypi.python.org/pypi/django-simple-pagination/
+.. image:: https://img.shields.io/badge/python-2.7%2C%203.3%2C%203.4%2C%203.5-blue.svg
+    :target: https://pypi.python.org/pypi/forex-python
 
 
-Django-Simple-Pagination
-========================
-
-Documentation_ -- GitHub_ -- Travis-CI_
-
-Django-Simple-Pagination is a simple Django app to for digg-style pagination with little effort. `Django Simple Pagination`_.
+`Forex Python`_ is a Free Foreign exchange rates and currency conversion.
 
 Features:
+---------
+- List all currency rates.
+- BitCoin price for all curuncies.
+- Converting amount to BitCoins.
+- Get historical rates for any day since 1999.
+- Conversion rate for one currency(ex; USD to INR).
+- Convert amount from one currency to other.('USD 10$' to INR).
+- Currency symbols.
+- Currency names.
 
-- Dynamic blog articles
-- Blog pages
-- Contact us page (configurable)
-- google analytics
-- SEO compliant
+Currency Source:
+-----------------
+
+Fixer.io is a free API for current and historical foreign exchange rates published by European Central Bank.
+The rates are updated daily 3PM CET.
+
+BitCoin Price Source:
+---------------------
+Bitcoin prices calculated every minute. For more infomation visit [CoinDesk API](http://www.coindesk.com/api/).
 
 Installation
 --------------
 
-- Install django-blog-it using the following command
+- Install using python package
 
-.. code-block:: python
+  .. code-block:: python
 
-    pip install django-blog-it
+      pip install forex-python
 
-    # or
-    git clone git://github.com/micropyramid/django-blog-it.git
+        Or directly cloning the repo:
 
-    cd django-blog-it
+      python setup.py install
 
-    python setup.py install
+Usage Examples:
+------------------
 
-- Add app name in settings.py
+- Initialize class
 
-.. code-block:: python
+  .. code-block:: python
 
-    INSTALLED_APPS = [
-       '..................',
-       'simple_pagination',
-       'django_blog_it.django_blog_it',
-       '..................'
-    ]
+      python
+      >>> from forex_python.converter import CurrencyRates
+      >>> c = CurrencyRates()
 
-- After installing/cloning this, add the following settings in the virtual env/bin/activate file to start discussions on blog articles
+- list all latest currency rates for "USD"
 
-.. code-block:: python
+  .. code-block:: python
 
-  You can create your disqus account at https://disqus.com/profile/login/
+      python
+      >>> c.get_rates('USD')
+      {u'IDR': 13625.0, u'BGN': 1.7433, u'ILS': 3.8794, u'GBP': 0.68641, u'DKK': 6.6289, u'CAD': 1.3106, u'JPY': 110.36, u'HUF': 282.36, u'RON': 4.0162, u'MYR': 4.081, u'SEK': 8.3419, u'SGD': 1.3815, u'HKD': 7.7673, u'AUD': 1.3833, u'CHF': 0.99144, u'KRW': 1187.3, u'CNY': 6.5475, u'TRY': 2.9839, u'HRK': 6.6731, u'NZD': 1.4777, u'THB': 35.73, u'EUR': 0.89135, u'NOK': 8.3212, u'RUB': 66.774, u'INR': 67.473, u'MXN': 18.41, u'CZK': 24.089, u'BRL': 3.5473, u'PLN': 3.94, u'PHP': 46.775, u'ZAR': 15.747}
 
-    # Disquss details
+- Get conversion rate from USD to INR
 
-    DISQUSSHORTNAME="Your Disquss Short Name"
+  .. code-block:: python
 
-    export DISQUSSHORTNAME
+      python
+      >>> c.get_rate('USD', 'INR')
+      67.473
+
+- Convert amount from USD to INR
+
+  .. code-block:: python
+
+      python
+      >>> c.convert('USD', 'INR', 10)
+      674.73
+
+- Get latest Bitcoin price.
+
+  .. code-block:: python
+
+      python
+      >>> from forex_python.bitcoin import BtcConverter
+      >>> b = BtcConverter()
+      >>> b.get_latest_price('USD')
+      533.913
 
 
-- Use virtualenv to install requirements
+- Convert Amount to Bitcoins based on latest exchange price.
 
-::
+  .. code-block:: python
 
-    pip install -r requirements.txt
-
-You can try it by hosting on your own or deploy to Heroku with a button click.
-
-Deploy To Heroku:
-
-.. image:: https://www.herokucdn.com/deploy/button.svg
-   :target: https://heroku.com/deploy?template=https://github.com/MicroPyramid/django-blog-it
+      python
+      >>> b.convert_to_btc(400, 'USD')
+      0.7492699301118473
 
 
-Support
--------
+- Get currency symbol using currency code
 
-We welcome your feedback and support, raise github ticket if you want to report a bug. Need new features?  contactus_
+  .. code-block:: python
+
+      python
+      >>> from forex_python.converter import CurrencyCodes
+      >>> c = CurrencyCodes()
+      >>> print c.get_symbol('GBP')
+      £
 
 
-.. _contactus: https://micropyramid.com/contact-india/
-.. _GitHub: https://github.com/nikhila05/Todo
-.. _Travis-CI: https://travis-ci.org/nikhila05/Todo
-.. _Django Simple Pagination: https://micropyramid.com/oss/
-.. _Documentation: http://django-blog-it.readthedocs.io/en/latest/?badge=latest
+You can view the complete `Documentation Here`_
+
+We welcome your feedback and support, raise `github ticket`_ if you want to report a bug. Need new features? `Contact us here`_
+
+.. _contact us here: https://micropyramid.com/contact-us/
+.. _Forex Python: https://micropyramid.com/oss/
+.. _github ticket: https://github.com/MicroPyramid/forex-python/issues
+.. _Documentation Here: http://forex-python.readthedocs.org/en/latest/?badge=latest

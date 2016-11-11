@@ -1,7 +1,7 @@
 import os
 from setuptools import setup, find_packages
 
-with open(os.path.join(os.path.dirname(__file__), 'READ.md')) as readme:
+with open(os.path.join(os.path.dirname(__file__), 'READ.rst')) as readme:
     README = readme.read()
 
 # allow setup.py to be run from any path
@@ -22,11 +22,11 @@ for dirpath, dirnames, filenames in os.walk(PROJECT_NAME):
 
 setup(
     name='test-todo',
-    version='0.1',
+    version='0.1.9',
     packages=find_packages(exclude=['tests', 'tests.*']),
     include_package_data=True,
     description='A simple installable app for testing app testcases',
-    long_description=README,
+    long_description="\n\n".join([open("READ.rst").read()]),
     url='https://github.com/nikhila05/Todo',
     author='nikhila05',
     author_email='nik@micropyramid.com',
